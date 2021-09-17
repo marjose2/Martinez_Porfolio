@@ -1,12 +1,9 @@
 
 ## Visit My Other Projects!
-<details><summary>Data Analysis Projects</summary>
+<details><summary>Bionformatics Research Paper link</summary>
   
-  - [See All Data Alaysis Projects]()
-  - [Project 1]()
-  - [Project 2]()
-  - [Project 3]()
-  - [Project 4]()
+  - https://github.com/marjose2/Martinez_Porfolio/tree/main/Research%20Project
+ 
 </details>
   
 <details><summary>Data Science Projects </summary>
