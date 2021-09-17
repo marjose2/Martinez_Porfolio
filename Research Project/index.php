@@ -1,3 +1,3 @@
 # Images In Read Me
 
-![](images/Graph1.png)
+![](images/Graph1.PNG)
