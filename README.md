@@ -12,6 +12,8 @@ My name is Jose Martinez and wecome to my Project Portfolio! A little about me. 
 
 Now I am pursuing an M.S. in Data Science with an emphasis in Bioinformatics, and I also focus on programming for whatever problems come my way and conducting analysis on topics that interest me!
 
-#Contact Me
+# Contact Me
+
 profesional email: joseignacio1225@hotmail.com
+
 linkedin: https://www.linkedin.com/in/jose-martinez-10303b1aa/
