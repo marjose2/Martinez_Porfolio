@@ -1,23 +1,24 @@
 # Bioinformatics, Data Science Research Project
-<details open>
-<summary> Visit My Other Projects!</summary>
-<br>
-
-- [Data Analysis Projects](https://github.com/marjose2/Martinez_Porfolio/tree/main/Data%20Analysis)
-  - [Project 1]()
-  - [Project 2]()
-  - [Project 3]()
-  - [Project 4]()
-- [Data Science Projects](https://github.com/marjose2/Martinez_Porfolio/tree/main/Data%20Science)
+<details><summary> Visit My Other Projects!</summary>
+<details><summary>Data Analysis Projects</summary>
+  
+  - [See All Data Alaysis Projects]()
   - [Project 1]()
   - [Project 2]()
   - [Project 3]()
   - [Project 4]()
 </details>
-
-
-
-
+  
+<details><summary>Data Science Projects </summary>
+  
+  - [See All Data Science Projetcs]() 
+  - [Project 1]()
+  - [Project 2]()
+  - [Project 3]()
+  - [Project 4]()
+  
+</details>
+</details>
 
 
 
@@ -64,3 +65,4 @@ I did my reserach under the supervistoin og Dr. David Andrew at Lycoming College
 Profesional Email: joseignacio1225@hotmail.com
 
 Linkedin: https://www.linkedin.com/in/jose-martinez-10303b1aa/
+
