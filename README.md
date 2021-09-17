@@ -1,2 +1,2 @@
-# Martinez_ Data Science Porfolio
+# Martinez Data Science Porfolio
 Data Science Portfolio
