@@ -1,1 +1,21 @@
 
+## Visit My Other Projects!
+<details><summary>Data Analysis Projects</summary>
+  
+  - [See All Data Alaysis Projects]()
+  - [Project 1]()
+  - [Project 2]()
+  - [Project 3]()
+  - [Project 4]()
+</details>
+  
+<details><summary>Data Science Projects </summary>
+  
+  - [See All Data Science Projetcs]() 
+  - [Project 1]()
+  - [Project 2]()
+  - [Project 3]()
+  - [Project 4]()
+
+</details>
+</details>
