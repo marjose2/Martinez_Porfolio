@@ -1,1 +1,1 @@
-# Bioinformatics, Datasciecne Research Project
+# Bioinformatics, Data Science Research Project
