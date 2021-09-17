@@ -9,13 +9,9 @@
   - [Project 4]()
 </details>
   
-<details><summary>Data Science Projects </summary>
+<details><summary>Bionformatics Research Paper link</summary>
   
-  - [See All Data Science Projetcs]() 
-  - [Project 1]()
-  - [Project 2]()
-  - [Project 3]()
-  - [Project 4]()
-
+  - https://github.com/marjose2/Martinez_Porfolio/tree/main/Research%20Project
+ 
 </details>
 </details>
