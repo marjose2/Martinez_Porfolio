@@ -14,6 +14,5 @@ Now I am pursuing an M.S. in Data Science with an emphasis in Bioinformatics, an
 
 # Contact Me
 
-profesional email: joseignacio1225@hotmail.com
-
-linkedin: https://www.linkedin.com/in/jose-martinez-10303b1aa/
+Profesional Email: joseignacio1225@hotmail.com
+Linkedin: https://www.linkedin.com/in/jose-martinez-10303b1aa/
