@@ -55,10 +55,18 @@
 </details>
 
 </details>
+<details><summary>How the code was made</summary>
+The data, of much each fly groomed in a 10 minute video, was extracted from using V-Code and Custom In Perl Scrips. V-code is an open-source video-annotation software that allows one to markdown and score when a fly groomed itself. When scoring the videos, each fly had a corresponding key, and whenever a fly started grooming, the key corresponding to that fly was pressed. The same key was pressed when the fly stopped grooming; this marked the beginnings and ends of a grooming bout, thus allowing for quantification of the amount of time spent grooming by each fly. 
+Once the videos were scored using V-code they were turn into text files so the data, of much each fly groomed in a 10 minute video, could be extrated using custom, in-house Perl scripts. The custom scripts in Perl to parse the VCode output and quantify behavioral metrics for each fly, such as total grooming time, a number of grooming bouts, grooming index (GI, the percentage of time spent grooming during a given interval), and comparable indices for standing, walking and falling. For a detailed analysis of grooming, additional parameters were the type and frequency of grooming-site transitions within grooming bouts, and time spent grooming specific body parts. The Perl scripts produce tab-delimited output files that were imported to Microsoft Excel (Microsoft Corporation, Redmond, WA, USA) and MATLAB (MathWorks®, Natick, MA, USA) for further analysis.
+
+</details>
+
+</details>
 <details><summary>Full Reasearch Paper Link</summary>
 https://github.com/marjose2/Martinez_Porfolio/blob/main/Research%20Project/Bioinformatics%2C%20Data%20Science%20Research%20paper.docx
 </details>
-
+ 
+ 
 ## Research At A Glance
 ### Assertion of motor-behavior abnormalities in Drosophila CASK mosaics
 
