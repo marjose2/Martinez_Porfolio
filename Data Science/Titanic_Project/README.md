@@ -31,3 +31,10 @@ Parent = mother, father
 ; Child = daughter, son, stepdaughter, stepson
 **Some children travelled only with a nanny, therefore parch=0 for them.
 </details>
+
+###  This project started by importing the packeges/ libraries to me make it easier to write the program
+Code
+   import numpy as np
+   import pandas as pd
+   import seaborn as sns
+   import matplotlib.pyplot as plt
