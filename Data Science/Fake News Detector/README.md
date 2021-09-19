@@ -5,7 +5,7 @@ Detecting fake news is very important society it can affect peoples ones views i
 
 ## The Programing
 
-# 1. Frist, The Data Was Loaded
+#### 1. Frist, The Data Was Loaded
 Code
 
 ```
@@ -19,42 +19,40 @@ files.upload()
 
 This was done by gathering some fake news data. Once the data was gathered it was loeaded and took a closer look at the information.
 
-# 2. Checked If There Was Missing Data Within This Data Set
+### 2. Checked If There Was Missing Data Within This Data Set
 Code
 
 ```
 #Remove missing values from the data set
 df.dropna(axis=0, inplace=True)
 ```
-There was data missing, ergo the rows that had missing values were removed. 
 
 <p align="center">
   <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
 </p>
+There was data missing, ergo the rows that had missing values were removed. 
 
-
-# 3. Combinign Columns That Were Important 
+### 3. Combinign Columns That Were Important 
 Code
 
 ```
 #Show the Tokenization
 df['combined'].head().apply(process_text)
 ```
-In this step columns we combined and then tokenized the data after processing the text. 
 
 <p align="center">
   <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure1.PNG" />
 </p>
+In this step columns we combined and then tokenized the data after processing the text. 
 
-
-## 4. created a Multinomial Naïve Bayes model and trained it on the combined data
+### 4. created a Multinomial Naïve Bayes model and trained it on the combined data
 Code
 ```
 #Create the model
 classifier = MultinomialNB()
 ```
 
-## 5. See The Metrics
+### 5. See The Metrics
 Code
 ```
 from sklearn.metrics import classification_report
