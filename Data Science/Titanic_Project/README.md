@@ -57,8 +57,10 @@ titanic.head(10)
 #Count the number of rows and columns in the data set 
 titanic.shape
 ```
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/figure 1.PNG"/>
+</p>
 
-<img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/figure 1.PNG"/>
 
 #### b. Got some statictics
 
@@ -116,7 +118,10 @@ Code
 #Look at survival rate by sex
 titanic.groupby('sex')[['survived']].mean()
 ```
-<img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/table3.PNG" />
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/table3.PNG" />
+</p>
+
 This table shows that about 74.2% of females survived and about 18.89% of males survived.
 
 #### b. Survival Rate by Sex and Class Table
@@ -126,8 +131,9 @@ Code
 #Look at survival rate by sex and class
 titanic.pivot_table('survived', index='sex', columns='class')
 ```
-
-<img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/table4.PNG" />
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/table4.PNG" />
+</p>
 This table shows that that females in first class had a survival rate of about 96.8%, meaning the majority of them survived, While males in third class had the lowest survival rate at about 13.54%, meaning the majority of them did not survive.
 
 
@@ -138,7 +144,11 @@ Code
 #Look at survival rate by sex and class visually
 titanic.pivot_table('survived', index='sex', columns='class').plot()
 ```
-<img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/figure4.PNG" />
+
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/figure4.PNG" />
+</p>
+
 
 
 #### d. Visualizing step 5.b (Survival Rate by Sex and Class) Using a Bar Plot
@@ -147,7 +157,10 @@ Code
 #Plot the survival rate of each class.
 sns.barplot(x='class', y='survived', data=titanic)
 ```
-<img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/figure5.PNG" />
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/figure5.PNG" />
+</p>
+
 In this bar plot we can see that over 60% of the passengers in first class survived. Moreover, less than 30% of passengers in third class survived. Meaning that means less than half of the passengers in third class survived, compared to the passengers in first class.
 
 ### 6. Look at Survival Rate by Sex, Age, and Class
@@ -159,7 +172,10 @@ age = pd.cut(titanic['age'], [0, 18, 80])
 titanic.pivot_table('survived', ['sex', age], 'class')
 ```
 
-<img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/table5.PNG" />
+<p align="center">
+    <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/table5.PNG" />
+    </p>
+    
 Here we can see that the oldest person is aged 80. Women in first class that were 18 and older had the highest survival rate at 97.2973%. Men 18 and older in second class had the lowest survival rate of 7.1429%.
 
 ### 7. We Ploted the Prices for Each Class
@@ -173,7 +189,11 @@ Code
   plt.legend()
   plt.show()
 ```
-<img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/figure6.PNG" />
+
+<p align="center">
+   <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/figure6.PNG" />
+    </p>
+
 
 ### 8. Look at the Cloumns Contaning Empty Values 
 Code 
@@ -185,7 +205,11 @@ titanic.isna().sum()
 
 Looks like the columns containing empty values are age, embarked, deck, and embarked_town.
 
-<img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/figure7.PNG" />
+
+<p align="center">
+   <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/figure7.PNG" />
+    </p>
+    
 
 ### 9. See wich Columns are Redundant
 Code
@@ -213,7 +237,6 @@ Code
 #Count the NEW number of rows and columns in the data set
 titanic.shape
 ```
-
 
 
 
