@@ -32,11 +32,26 @@ Parent = mother, father
 **Some children travelled only with a nanny, therefore parch=0 for them.
 </details>
 
-###  This project started by importing the packeges/ libraries to me make it easier to write the program
+###  1. This project started by importing the packeges/ libraries to me make it easier to write the program
 <details><summary>Code</summary>
-   
-   import numpy as np
-   import pandas as pd
-   import seaborn as sns
-   import matplotlib.pyplot as plt
+
+```
+import numpy as np  
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+```
 </details>
+
+###  2. Then data from seabron package was loaded and the 10 rows were printed
+<details><summary>Code</summary>
+
+```
+#Load the data
+titanic = sns.load_dataset('titanic')
+#Print the first 10 rows of data
+titanic.head(10)
+```
+</details>
+
+
