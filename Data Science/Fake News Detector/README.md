@@ -1,9 +1,9 @@
-# Building A FAke News Detector Using Python And Machine Learning
+# Building A Fake News Detector Using Python And Machine Learning
 ## Background:
 The purpose of this project was to build a program/ model that can detect fake news articles. For the sake of this project we defince fake news as false or misleading information presented as news. 
 Detecting fake news is very important society it can affect peoples ones views in politics, health, and finance. 
 
-## The Programing
+## The Programing:
 
 #### 1. Frist, The Data Was Loaded
 Code
@@ -45,7 +45,7 @@ df['combined'].head().apply(process_text)
 </p>
 In this step columns we combined and then tokenized the data after processing the text. 
 
-### 4. created a Multinomial Naïve Bayes model and trained it on the combined data
+### 4. Created a Multinomial Naïve Bayes Model And Trained It On The Combined Data
 Code
 ```
 #Create the model
