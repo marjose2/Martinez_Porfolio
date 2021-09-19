@@ -110,3 +110,60 @@ This figure allowed one to see that that a male, 18 or older, is not likely to s
 
 
 ### 5. Then closer look at at survival rate by sex
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Contact Me:
+
++ Profesional Email: joseignacio1225@hotmail.com
++ Linkedin: https://www.linkedin.com/in/jose-martinez-10303b1aa/
+
