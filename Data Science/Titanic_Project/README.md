@@ -33,18 +33,14 @@ Parent = mother, father
 </details>
 
 ###  1. This project started by importing the packeges/ libraries to me make it easier to write the program
-<details><summary>Code</summary>
-
 ```
 import numpy as np  
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
 ```
-</details>
 
 ###  2. Then data from seabron package was loaded and the 10 rows were printed
-<details><summary>Code</summary>
 
 ```
 #Load the data
@@ -52,41 +48,40 @@ titanic = sns.load_dataset('titanic')
 #Print the first 10 rows of data
 titanic.head(10)
 ```
-</details>
 <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/table1.PNG" width="1000" />
 
 ### 3. Analyzed the data by:
 #### a. Counting the number of rows in a Data Set 
-  <details><summary>Code</summary>
 
 ```
 #Count the number of rows and columns in the data set 
 titanic.shape
 ```
-</details>
-# insert Figure 1
+
+<img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/figure 1.PNG"/>
+
 #### b. Got some statictics
-  <details><summary>Code</summary>
+
 
 ```
 #Get some statistics
 titanic. describe()
 ```
-</details>
-#Insert Table 2
+
+<img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/table2.PNG" width="1000" />
 
 #### c. Got a count of the number of survivors
-<details><summary>Code</summary>
+
 
 ```
 #Get a count of the number of survivor
 titanic['survived'].value_counts()
 ```
-</details>
+
 
 ### 4. Made a visualization of the data
 #### a. Vizualize the count of survivors for the columns who, se, pclass, sibsp, parch, and embarked
-<details><summary>Code</summary>
+
 
 ```
 cols = ['who', 'sex', 'pclass', 'sibsp', 'parch', 'embarked']
@@ -109,8 +104,8 @@ for r in range(0,n_rows):
         
 plt.tight_layout()
 ```
-</details>
-# Show Figure 3
+  
+<img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/firgure 3.PNG" width="1000" />
 This figure allowed one to see that that a male, 18 or older, is not likely to survive from the chart ``who``. Females are most likely to survive from the chart ```sex```. Third class is most likely to not survive by chart ```pclass```. If you have 0 siblings or spouses on board, you are not likely to survive according to chart ```sibsp```. If you have 0 parents or children on board, you are not likely to survive according to the ```parch``` chart. If you embarked from Southampton (S), you are not likely to survive according to the ```embarked``` chart.
 
 ### Then closer look at at survival rate by sex
