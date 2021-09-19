@@ -12,7 +12,7 @@
 <details><summary>Data Science Projects </summary>
   
   - [See All Data Science Projetcs]() 
-  - [Project 1]()
+  - [Titanic Project](https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/README.md)
   - [Project 2]()
   - [Project 3]()
   - [Project 4]()
