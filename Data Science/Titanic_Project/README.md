@@ -187,6 +187,33 @@ Looks like the columns containing empty values are age, embarked, deck, and emba
 
 # figure7
 
+### 9. See wich Columns are Redundant
+Code
+
+```
+#Look at all of the values in each column & get a count 
+for val in titanic:
+   print(titanic[val].value_counts())
+   print()
+```
+#### a. Drop the Columns that are Missing Values and that are Redundant
+ Code
+```
+ # Drop the columns
+titanic = titanic.drop(['deck', 'embark_town', 'alive', 'class', 'alone', 'adult_male', 'who'], axis=1)
+
+#Remove the rows with missing values
+titanic = titanic.dropna(subset =['embarked', 'age'])
+```
+
+#### b. See the new number of rows and columns in the data set
+Code
+
+```
+#Count the NEW number of rows and columns in the data set
+titanic.shape
+```
+
 
 
 
