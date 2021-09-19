@@ -45,6 +45,17 @@ Code
 classifier = MultinomialNB()
 ```
 
+## 5. See The Metrics
+Code
+```
+from sklearn.metrics import classification_report
+prep = classifier.predict(X_train)
+print(Classification_report(y_train, pred))
+```
+# tableidk
+
+Creating this model showed that about 97% accuracy on the test data (this is data that the model has nerver seem before). With alittle more dat preparation, and parameter tunning this model can be imporved and get a higher score.
+
 
 
 
