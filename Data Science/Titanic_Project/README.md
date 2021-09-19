@@ -33,8 +33,10 @@ Parent = mother, father
 </details>
 
 ###  This project started by importing the packeges/ libraries to me make it easier to write the program
-Code
+<details><summary>Code</summary>
+   
    import numpy as np
    import pandas as pd
    import seaborn as sns
    import matplotlib.pyplot as plt
+</details>
