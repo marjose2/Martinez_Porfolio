@@ -53,5 +53,5 @@ titanic = sns.load_dataset('titanic')
 titanic.head(10)
 ```
 </details>
-<img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Research%20Project/images/Ethogram.PNG" width="500" />
+<img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/table1.PNG" width="500" />
 
