@@ -53,5 +53,64 @@ titanic = sns.load_dataset('titanic')
 titanic.head(10)
 ```
 </details>
-<img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/table1.PNG" width="500" />
+<img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/table1.PNG" width="1000" />
 
+### 3. Analyzed the data by:
+#### a. Counting the number of rows in a Data Set 
+  <details><summary>Code</summary>
+
+```
+#Count the number of rows and columns in the data set 
+titanic.shape
+```
+</details>
+#insert Figure 1
+#### b. Got some statictics
+  <details><summary>Code</summary>
+
+```
+#Get some statistics
+titanic. describe()
+```
+</details>
+#Insert Table 2
+
+#### c. Got a count of the number of survivors
+<details><summary>Code</summary>
+
+```
+#Get a count of the number of survivor
+titanic['survived'].value_counts()
+```
+</details>
+
+### 4. Made a visualization of the data
+#### a. Vizualize the count of survivors for the columns who, se, pclass, sibsp, parch, and embarked
+<details><summary>Code</summary>
+
+```
+cols = ['who', 'sex', 'pclass', 'sibsp', 'parch', 'embarked']
+
+n_rows = 2
+n_cols = 3
+
+# The subplot grid and the figure size of each graph
+# This returns a Figure (fig) and an Axes Object (axs)
+fig, axs = plt.subplots(n_rows, n_cols, figsize=(n_cols*3.2,n_rows*3.2))
+
+for r in range(0,n_rows):
+    for c in range(0,n_cols):  
+        
+        i = r*n_cols+ c #index to go through the number of columns       
+        ax = axs[r][c] #Show where to position each subplot
+        sns.countplot(titanic[cols[i]], hue=titanic["survived"], ax=ax)
+        ax.set_title(cols[i])
+        ax.legend(title="survived", loc='upper right') 
+        
+plt.tight_layout()
+```
+</details>
+# Show Figure 3
+This figure allowed one to see that that a male, 18 or older, is not likely to survive from the chart ``who``. Females are most likely to survive from the chart ```sex```. Third class is most likely to not survive by chart ```pclass```. If you have 0 siblings or spouses on board, you are not likely to survive according to chart ```sibsp```. If you have 0 parents or children on board, you are not likely to survive according to the ```parch``` chart. If you embarked from Southampton (S), you are not likely to survive according to the ```embarked``` chart.
+
+### Then closer look at at survival rate by sex
