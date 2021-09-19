@@ -64,7 +64,7 @@ titanic.head(10)
 titanic.shape
 ```
 </details>
-#insert Figure 1
+# insert Figure 1
 #### b. Got some statictics
   <details><summary>Code</summary>
 
