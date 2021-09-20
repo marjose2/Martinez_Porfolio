@@ -238,33 +238,225 @@ Code
 titanic.shape
 ```
 
+# figure 8
 
+### 10. Look at Data tyoes that need to be transformed
+Code
 
+```
+titanic.dtypes
+```
+# figure9
 
+### 11. Print the unique values of the non-numeric data
+Code
 
+```
+#Print the unique values in the columns
+print(titanic['sex'].unique())
+print(titanic['embarked'].unique())
+```
+# figure10
 
+### 12. Changed the non-numeric data, and print the new values
+Code
 
+```
+#Encoding categorical data values (Transforming object data types to integers)
+from sklearn.preprocessing import LabelEncoder
+labelencoder = LabelEncoder()
 
+#Encode sex column
+titanic.iloc[:,2]= labelencoder.fit_transform(titanic.iloc[:,2].values)
+#print(labelencoder.fit_transform(titanic.iloc[:,2].values))
 
+#Encode embarked
+titanic.iloc[:,7]= labelencoder.fit_transform(titanic.iloc[:,7].values)
+#print(labelencoder.fit_transform(titanic.iloc[:,7].values))
 
+#Print the NEW unique values in the columns
+print(titanic['sex'].unique())
+print(titanic['embarked'].unique())
+```
+# figure11
 
+### 13. Split the dat into 'X' and dependent 'Y' data sets
+Code
 
+```
+#Split the data into independent 'X' and dependent 'Y' variables
+X = titanic.iloc[:, 1:8].values 
+Y = titanic.iloc[:, 0].values 
+```
+### 14. Split the data again, this time into 80% training (X_train and Y_train) and 20% testing (X_test and Y_test) data sets
+Code
 
+```
+# Split the dataset into 80% Training set and 20% Testing set
+from sklearn.model_selection import train_test_split
+X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size = 0.2, random_state = 0)
+```
 
+### 15. Scale the data (the dat will be within a specific range)
+Code
 
+```
+#Feature Scaling
+from sklearn.preprocessing import StandardScaler
+sc = StandardScaler()
+X_train = sc.fit_transform(X_train)
+X_test = sc.transform(X_test)
+```
 
+### 16. Create a funtion that has within it many different machine learning models that we can use to make our predictions
+Code
 
+```
+#Create a function within many Machine Learning Models
+def models(X_train,Y_train):
+  
+  #Using Logistic Regression Algorithm to the Training Set
+  from sklearn.linear_model import LogisticRegression
+  log = LogisticRegression(random_state = 0)
+  log.fit(X_train, Y_train)
+  
+  #Using KNeighborsClassifier Method of neighbors class to use Nearest Neighbor algorithm
+  from sklearn.neighbors import KNeighborsClassifier
+  knn = KNeighborsClassifier(n_neighbors = 5, metric = 'minkowski', p = 2)
+  knn.fit(X_train, Y_train)
 
+  #Using SVC method of svm class to use Support Vector Machine Algorithm
+  from sklearn.svm import SVC
+  svc_lin = SVC(kernel = 'linear', random_state = 0)
+  svc_lin.fit(X_train, Y_train)
 
+  #Using SVC method of svm class to use Kernel SVM Algorithm
+  from sklearn.svm import SVC
+  svc_rbf = SVC(kernel = 'rbf', random_state = 0)
+  svc_rbf.fit(X_train, Y_train)
 
+  #Using GaussianNB method of naïve_bayes class to use Naïve Bayes Algorithm
+  from sklearn.naive_bayes import GaussianNB
+  gauss = GaussianNB()
+  gauss.fit(X_train, Y_train)
 
+  #Using DecisionTreeClassifier of tree class to use Decision Tree Algorithm
+  from sklearn.tree import DecisionTreeClassifier
+  tree = DecisionTreeClassifier(criterion = 'entropy', random_state = 0)
+  tree.fit(X_train, Y_train)
 
+  #Using RandomForestClassifier method of ensemble class to use Random Forest Classification algorithm
+  from sklearn.ensemble import RandomForestClassifier
+  forest = RandomForestClassifier(n_estimators = 10, criterion = 'entropy', random_state = 0)
+  forest.fit(X_train, Y_train)
+  
+  #print model accuracy on the training data.
+  print('[0]Logistic Regression Training Accuracy:', log.score(X_train, Y_train))
+  print('[1]K Nearest Neighbor Training Accuracy:', knn.score(X_train, Y_train))
+  print('[2]Support Vector Machine (Linear Classifier) Training Accuracy:', svc_lin.score(X_train, Y_train))
+  print('[3]Support Vector Machine (RBF Classifier) Training Accuracy:', svc_rbf.score(X_train, Y_train))
+  print('[4]Gaussian Naive Bayes Training Accuracy:', gauss.score(X_train, Y_train))
+  print('[5]Decision Tree Classifier Training Accuracy:', tree.score(X_train, Y_train))
+  print('[6]Random Forest Classifier Training Accuracy:', forest.score(X_train, Y_train))
+  
+  return log, knn, svc_lin, svc_rbf, gauss, tree, forest
+```
 
+### 17. Get atrain models and store them in variable called model
+Code
 
+```
+#Get and train all of the models
+model = models(X_train,Y_train)
+```
 
+# figure12
 
+### 18. Show  the confusion matrix and accuracy for all the models on the test data
+Code
 
+```
 
+from sklearn.metrics import confusion_matrix 
+for i in range(len(model)):
+   cm = confusion_matrix(Y_test, model[i].predict(X_test)) 
+   #extracting TN, FP, FN, TP
+   TN, FP, FN, TP = confusion_matrix(Y_test, model[i].predict(X_test)).ravel()
+    print(cm)
+   print('Model[{}] Testing Accuracy = "{} !"'.format(i,  (TP + TN) / (TP + TN + FN + FP)))
+   print()# Print a new line
+```
+ # figure13
+
+-  False Positive (FP)= A test result which incorrectly indicates that a particular condition or attribute is present.
+-  True Positive (TP)= Sensitivity (also called the true positive rate, or probability of detection in some fields), measures the proportion of actual positives that are -  correctly identified as such.
+-  True Negative (TN)= Specificity (also called the true negative rate), measures the proportion of actual negatives that are correctly identified as such.
+-  False Negative (FN)= A test result that indicates that a condition does not hold, while in fact, it does. For example, a test result that indicates a person does not survive when the person actually does.
+
+### 19. Get the important features
+Code
+
+```
+#Get the importance of the features
+forest = model[6]
+importances = pd.DataFrame({'feature':titanic.iloc[:, 1:8].columns,'importance':np.round(forest.feature_importances_,3)})
+importances = importances.sort_values('importance',ascending=False).set_index('feature')
+importances
+```
+
+# figure14
+
+### 20. Visualize the important features
+Code
+
+```
+#Visualize the importance
+importances.plot.bar()
+```
+# figure15
+
+### 21. Print the Random Forest Classifier Model predictions for each passenger and, below it, print the actual values
+Code
+
+```
+
+#Print Prediction of Random Forest Classifier model
+pred = model[6].predict(X_test)
+print(pred)
+
+#Print a space
+print()
+
+#Print the actual values
+print(Y_test)
+```
+
+# figure16
+
+### 22. Creating a variable called my survival
+Code
+
+```
+my_survival = [[3,1,21,0, 0, 0, 1]]
+#Print Prediction of Random Forest Classifier model
+pred = model[6].predict(my_survival)
+print(pred)
+
+if pred == 0:
+  print('Oh no! You didn't make it')
+else:
+  print('Nice! You survived')
+```
+
+-  In it, I will have a pclass = 3, meaning I would probably be in the third class because of the cheaper price.
+-  I am a male, so sex = 1.
+-  I am older than 18, so I will put age = 22.
+-  I would not be on the ship with siblings or spouses, so sibsp = 0.
+-  No children or parents, so parch = 0.
+-  I would try to pay the minimum fare, so fare = 0.
+-  I would’ve embarked from Queenstown, so embarked = 1.
+
+# figure17
 
 
 
