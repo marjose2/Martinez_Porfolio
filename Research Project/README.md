@@ -13,7 +13,7 @@
   
   - [See All Data Science Projetcs](https://github.com/marjose2/Martinez_Porfolio/tree/main/Data%20Science) 
   - [Titanic Project](https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/README.md)
-  - [Project 2]()
+  - [Fake News Detector](https://github.com/marjose2/Martinez_Porfolio/tree/main/Data%20Science/Fake%20News%20Detector)
   - [Project 3]()
   - [Project 4]()
 
