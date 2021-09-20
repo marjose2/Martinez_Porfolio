@@ -237,8 +237,10 @@ Code
 #Count the NEW number of rows and columns in the data set
 titanic.shape
 ```
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/figure8.PNG"/>
+</p>
 
-# figure 8
 
 ### 10. Look at Data tyoes that need to be transformed
 Code
@@ -246,7 +248,10 @@ Code
 ```
 titanic.dtypes
 ```
-# figure9
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/figure9.PNG"/>
+</p>
+
 
 ### 11. Print the unique values of the non-numeric data
 Code
@@ -256,7 +261,10 @@ Code
 print(titanic['sex'].unique())
 print(titanic['embarked'].unique())
 ```
-# figure10
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/figure10.PNG"/>
+</p>
+
 
 ### 12. Changed the non-numeric data, and print the new values
 Code
@@ -278,7 +286,10 @@ titanic.iloc[:,7]= labelencoder.fit_transform(titanic.iloc[:,7].values)
 print(titanic['sex'].unique())
 print(titanic['embarked'].unique())
 ```
-# figure11
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/figure11.PNG"/>
+</p>
+
 
 ### 13. Split the dat into 'X' and dependent 'Y' data sets
 Code
@@ -370,7 +381,10 @@ Code
 model = models(X_train,Y_train)
 ```
 
-# figure12
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/figure12.PNG"/>
+</p>
+
 
 ### 18. Show  the confusion matrix and accuracy for all the models on the test data
 Code
@@ -386,7 +400,10 @@ for i in range(len(model)):
    print('Model[{}] Testing Accuracy = "{} !"'.format(i,  (TP + TN) / (TP + TN + FN + FP)))
    print()# Print a new line
 ```
- # figure13
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/figure13.PNG"/>
+</p>
+
 
 -  False Positive (FP)= A test result which incorrectly indicates that a particular condition or attribute is present.
 -  True Positive (TP)= Sensitivity (also called the true positive rate, or probability of detection in some fields), measures the proportion of actual positives that are -  correctly identified as such.
@@ -404,7 +421,10 @@ importances = importances.sort_values('importance',ascending=False).set_index('f
 importances
 ```
 
-# figure14
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/figure14.PNG"/>
+</p>
+
 
 ### 20. Visualize the important features
 Code
@@ -413,7 +433,10 @@ Code
 #Visualize the importance
 importances.plot.bar()
 ```
-# figure15
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/figure15.PNG"/>
+</p>
+
 
 ### 21. Print the Random Forest Classifier Model predictions for each passenger and, below it, print the actual values
 Code
@@ -431,7 +454,10 @@ print()
 print(Y_test)
 ```
 
-# figure16
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/figure16.PNG"/>
+</p>
+
 
 ### 22. Creating a variable called my survival
 Code
@@ -456,9 +482,9 @@ else:
 -  I would try to pay the minimum fare, so fare = 0.
 -  I would’ve embarked from Queenstown, so embarked = 1.
 
-# figure17
-
-
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Titanic_Project/images/figure17.PNG"/>
+</p>
 
 
 
