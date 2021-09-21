@@ -145,7 +145,7 @@ data2 = data1[~((data1<(Q1-1.5*IQR))|(data1>(Q3+1.5*IQR))).any(axis=1)]
 data2.shape
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure9.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure20.PNG" />
 </p>
 
 #### b. Using Z-score
@@ -158,7 +158,7 @@ data3 = data1[(z<3).all(axis=1)]
 data3.shape
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure1.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure21.PNG" />
 </p>
 
 ### 12. Fiding the correlation between variables
