@@ -41,7 +41,7 @@ Code
 data1.info()
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure1.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure1.PNG" />
 </p>
 
 ### 4. Look at the number of record and fetures in the dataset
@@ -52,7 +52,7 @@ Code
 data1.shape
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure2.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure3.PNG" />
 </p>
 
 ### 5. Look for dupicate data
@@ -64,7 +64,7 @@ duplicate_rows = data1[data1.duplicated()]
 print("Number of duplicate rows :: ", duplicate_rows.shape)
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure3.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure4.PNG" />
 </p>
 
 ### 6. Remove the duplicate rows
@@ -80,7 +80,7 @@ print("Number of duplicate rows :: ", duplicate_rows.shape)
 #Number of duplicate rows after dropping one duplicate row
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure4.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure5.PNG" />
 </p>
 
 ### 7. Check to see if if the data is consistent
@@ -91,7 +91,7 @@ Code
 data1.shape
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure5.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure6.PNG" />
 </p>
 
 ### 8. Look for null values
@@ -103,7 +103,7 @@ print("Null values :: ")
 print(data1.isnull() .sum())
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure4.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure7.PNG" />
 </p>
 
 ### 9. Look for outliars
@@ -116,9 +116,8 @@ sns.boxplot(x=data1['age'])
 Repeat this process with other variables (sex, cp, trtps, chol, fbs, restecg, thalachh, exng, oldpeak, slp, caa, and thall)
 
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure5.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure8.PNG" />
 </p>
-
 
 ### 10. Find the interquarule Range
 Code 
@@ -129,11 +128,11 @@ Q1 = data1.quantile(0.25)
 Q3 = data1.quantile(0.75)
 
 IQR = Q3-Q1
-print('*********** InterQuartile Range ***********')
+print('InterQuartile Range')
 print(IQR)
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure6.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure9.PNG" />
 </p>
 
 ### 11. Removing the outliars 
@@ -146,7 +145,7 @@ data2 = data1[~((data1<(Q1-1.5*IQR))|(data1>(Q3+1.5*IQR))).any(axis=1)]
 data2.shape
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure7.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure9.PNG" />
 </p>
 
 #### b. Using Z-score
@@ -159,7 +158,7 @@ data3 = data1[(z<3).all(axis=1)]
 data3.shape
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure8.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure1.PNG" />
 </p>
 
 ### 12. Fiding the correlation between variables
@@ -183,7 +182,7 @@ sns.heatmap(pearsonCorr, vmin=-1,vmax=1, cmap = "Greens", annot=True, linewidth=
 plt.title("Pearson Correlation")
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure9.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure10.PNG" />
 </p>
 
 #### b. Spearman Correlation
@@ -195,7 +194,7 @@ sns.heatmap(spearmanCorr, vmin=-1,vmax=1, cmap = "Blues", annot=True, linewidth=
 plt.title("Spearman Correlation")
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure11.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure11.PNG" />
 </p>
 
 #### c. Creating a mask for both correlation matrices, Pearson Corr mask
@@ -220,7 +219,7 @@ sns.heatmap(pCorr, vmin=-1,vmax=1, cmap = cmap, annot=True, linewidth=0.3, mask=
 plt.title("Pearson Correlation")
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure12.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure12.PNG" />
 </p>
 
 
@@ -246,7 +245,7 @@ sns.heatmap(sCorr, vmin=-1,vmax=1, cmap = cmap, annot=True, linewidth=0.3, mask=
 plt.title("Spearman Correlation")
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure13.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure13.PNG" />
 </p>
 
 ### 14. Buiding a classification model
@@ -290,7 +289,7 @@ y_pred_logReg1 = logReg1.predict(x_test1)
 print("\nAccuracy of logistic regression classifier after removing features:: " ,metrics.accuracy_score(y_test,y_pred_logReg1))
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure14.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure14.PNG" />
 </p>
 
 ### 16. Maku=ing the Decision tree Classification
@@ -325,7 +324,7 @@ y_pred_dt1 = decTree1.predict(x_test_dt)
 print("Accuracy of decision Tree after removing features:: ", metrics.accuracy_score(y_test,y_pred_dt1))
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure15.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure15.PNG" />
 </p>
 
 ### 17. Random Forest Classifier
@@ -348,7 +347,7 @@ for i,v in enumerate(f_imp):
     print('Feature: %s, Score: %.5f' % (names[i],v))
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure16.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure16.PNG" />
 </p>
 
 ### 18. Removing : fbs(score=0.006), sex(score=0.02), trtbps(score=0.072), chol(score=0.078), restecg(score=0.02), exng(score=0.06), slp(score=0.06)
@@ -388,7 +387,7 @@ for i,v in enumerate(f_imp):
     print('Feature: %s, Score: %.5f' % (names1[i],v))
 ````
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure17.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure17.PNG" />
 </p>
 
 ### 19. K neighbours Classifier
@@ -405,7 +404,7 @@ y_pred_knc = knc.predict(x_test)
 print("Accuracy of K-Neighbours classifier :: ", metrics.accuracy_score(y_test,y_pred_knc))
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure18.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure18.PNG" />
 </p>
 
 ### 20. Testing the Models Acurracy
@@ -421,7 +420,7 @@ print("Random Forest Classifier :: ", metrics.accuracy_score(y_test, y_pred_rf))
 print("K Neighbours Classifier :: ", metrics.accuracy_score(y_test,y_pred_knc))
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure19.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Heart%20Disease%20Detection%20Using%20Machine%20Learning/images/figure19.PNG" />
 </p>
 
 
