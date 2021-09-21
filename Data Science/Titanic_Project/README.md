@@ -2,7 +2,7 @@
 The intedn of this project was to make two prediction from the data set given. The frist prediction being which passengers on board the Titanic would survive; the second prediction is to see if we would’ve survived.
 
 
-## Data Set Description
+## DataSet Description
 |Variable               | Defenition                | Key              |
 |-----------------------|----------------------------|------------------|
 |Survival| Survival| 0 = no, 1 = yes|
