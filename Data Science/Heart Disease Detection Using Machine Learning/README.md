@@ -38,28 +38,11 @@ data1 = pd.DataFrame(data1)
 Code
 
 ```
-<class 'pandas.core.frame.DataFrame'>
-RangeIndex: 303 entries, 0 to 302
-Data columns (total 14 columns):
- #   Column    Non-Null Count  Dtype  
----  ------    --------------  -----  
- 0   age       303 non-null    int64  
- 1   sex       303 non-null    int64  
- 2   cp        303 non-null    int64  
- 3   trtbps    303 non-null    int64  
- 4   chol      303 non-null    int64  
- 5   fbs       303 non-null    int64  
- 6   restecg   303 non-null    int64  
- 7   thalachh  303 non-null    int64  
- 8   exng      303 non-null    int64  
- 9   oldpeak   303 non-null    float64
- 10  slp       303 non-null    int64  
- 11  caa       303 non-null    int64  
- 12  thall     303 non-null    int64  
- 13  output    303 non-null    int64  
-dtypes: float64(1), int64(13)
-memory usage: 33.3 KB
+data1.info()
 ```
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure1.PNG" />
+</p>
 
 ### 4. Look at the number of record and fetures in the dataset
 Code
@@ -68,6 +51,9 @@ Code
 #number of records and features in the dataset
 data1.shape
 ```
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure2.PNG" />
+</p>
 
 ### 5. Look for dupicate data
 Code
@@ -77,6 +63,9 @@ Code
 duplicate_rows = data1[data1.duplicated()]
 print("Number of duplicate rows :: ", duplicate_rows.shape)
 ```
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure3.PNG" />
+</p>
 
 ### 6. Remove the duplicate rows
 Code
@@ -90,6 +79,9 @@ print("Number of duplicate rows :: ", duplicate_rows.shape)
 
 #Number of duplicate rows after dropping one duplicate row
 ```
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure4.PNG" />
+</p>
 
 ### 7. Check to see if if the data is consistent
 Code
@@ -98,6 +90,9 @@ Code
 #Check if the other data is consistent
 data1.shape
 ```
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure5.PNG" />
+</p>
 
 ### 8. Look for null values
 Code
@@ -107,6 +102,9 @@ Code
 print("Null values :: ")
 print(data1.isnull() .sum())
 ```
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure4.PNG" />
+</p>
 
 ### 9. Look for outliars
 Code
@@ -115,7 +113,12 @@ Code
 # 1. Detecting Outliers using IQR (InterQuartile Range)
 sns.boxplot(x=data1['age'])
 ```
-Repeat this process with other variables (sex, cp, trtps, chol, fbs, restecg, thalachh, exng, oldpeak, slp, caa, thall,  )
+Repeat this process with other variables (sex, cp, trtps, chol, fbs, restecg, thalachh, exng, oldpeak, slp, caa, and thall)
+
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure5.PNG" />
+</p>
+
 
 ### 10. Find the interquarule Range
 Code 
@@ -129,6 +132,9 @@ IQR = Q3-Q1
 print('*********** InterQuartile Range ***********')
 print(IQR)
 ```
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure6.PNG" />
+</p>
 
 ### 11. Removing the outliars 
 #### a. using IQR
@@ -139,6 +145,9 @@ Code
 data2 = data1[~((data1<(Q1-1.5*IQR))|(data1>(Q3+1.5*IQR))).any(axis=1)]
 data2.shape
 ```
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure7.PNG" />
+</p>
 
 #### b. Using Z-score
 Code
@@ -149,6 +158,10 @@ z = np.abs(stats.zscore(data1))
 data3 = data1[(z<3).all(axis=1)]
 data3.shape
 ```
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure8.PNG" />
+</p>
+
 ### 12. Fiding the correlation between variables
 Code
 
@@ -169,6 +182,10 @@ fig = plt.subplots(figsize=(14,8))
 sns.heatmap(pearsonCorr, vmin=-1,vmax=1, cmap = "Greens", annot=True, linewidth=0.1)
 plt.title("Pearson Correlation")
 ```
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure9.PNG" />
+</p>
+
 #### b. Spearman Correlation
 Code
 
@@ -177,6 +194,9 @@ fig = plt.subplots(figsize=(14,8))
 sns.heatmap(spearmanCorr, vmin=-1,vmax=1, cmap = "Blues", annot=True, linewidth=0.1)
 plt.title("Spearman Correlation")
 ```
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure11.PNG" />
+</p>
 
 #### c. Creating a mask for both correlation matrices, Pearson Corr mask
 Code
@@ -199,6 +219,9 @@ fig = plt.subplots(figsize=(14,8))
 sns.heatmap(pCorr, vmin=-1,vmax=1, cmap = cmap, annot=True, linewidth=0.3, mask=maskP)
 plt.title("Pearson Correlation")
 ```
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure12.PNG" />
+</p>
 
 
 #### d. Creating a mask for both correlation matrices, Spearson Corr mask
@@ -222,6 +245,9 @@ fig = plt.subplots(figsize=(14,8))
 sns.heatmap(sCorr, vmin=-1,vmax=1, cmap = cmap, annot=True, linewidth=0.3, mask=maskS)
 plt.title("Spearman Correlation")
 ```
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure13.PNG" />
+</p>
 
 ### 14. Buiding a classification model
 Code
@@ -263,6 +289,9 @@ logReg1 = LogisticRegression(random_state=0, solver='liblinear').fit(x_train1,y_
 y_pred_logReg1 = logReg1.predict(x_test1)
 print("\nAccuracy of logistic regression classifier after removing features:: " ,metrics.accuracy_score(y_test,y_pred_logReg1))
 ```
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure14.PNG" />
+</p>
 
 ### 16. Maku=ing the Decision tree Classification
 Code
@@ -295,6 +324,9 @@ y_pred_dt1 = decTree1.predict(x_test_dt)
 
 print("Accuracy of decision Tree after removing features:: ", metrics.accuracy_score(y_test,y_pred_dt1))
 ```
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure15.PNG" />
+</p>
 
 ### 17. Random Forest Classifier
 Code
@@ -315,6 +347,9 @@ f_imp = rf.feature_importances_
 for i,v in enumerate(f_imp):
     print('Feature: %s, Score: %.5f' % (names[i],v))
 ```
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure16.PNG" />
+</p>
 
 ### 18. Removing : fbs(score=0.006), sex(score=0.02), trtbps(score=0.072), chol(score=0.078), restecg(score=0.02), exng(score=0.06), slp(score=0.06)
 Code
@@ -347,13 +382,14 @@ y_pred_rf2 = rf2.predict(x_test_rf2)
 print("Accuracy of Random Forest Classifier after removing features with low score :")
 print("New Accuracy :: " , metrics.accuracy_score(y_test,y_pred_rf2))
 print("\n")
-print("---------------------------------------------------------------------------------------------")
 
 f_imp = rf2.feature_importances_
 for i,v in enumerate(f_imp):
     print('Feature: %s, Score: %.5f' % (names1[i],v))
-print("---------------------------------------------------------------------------------------------")
 ````
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure17.PNG" />
+</p>
 
 ### 19. K neighbours Classifier
 Code
@@ -368,6 +404,9 @@ y_pred_knc = knc.predict(x_test)
 
 print("Accuracy of K-Neighbours classifier :: ", metrics.accuracy_score(y_test,y_pred_knc))
 ```
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure18.PNG" />
+</p>
 
 ### 20. Testing the Models Acurracy
 Code
@@ -381,6 +420,9 @@ print("Decision Tree :: ", metrics.accuracy_score(y_test,y_pred_dt1))
 print("Random Forest Classifier :: ", metrics.accuracy_score(y_test, y_pred_rf))
 print("K Neighbours Classifier :: ", metrics.accuracy_score(y_test,y_pred_knc))
 ```
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/figure19.PNG" />
+</p>
 
 
 
