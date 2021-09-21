@@ -32,6 +32,7 @@ Parent = mother, father
 **Some children travelled only with a nanny, therefore parch=0 for them.
 </details>
 
+##Process: 
 ###  1. This project started by importing the packeges/ libraries to me make it easier to write the program
 ```
 import numpy as np  
