@@ -19,5 +19,10 @@ print(seq.reverse_complement())
 ## 4.Rabbits and Recurrence Relations
 code
 ```
-
+def Fibonacci_Loop_Pythonic(months, offsprings):
+    parrent, child = 1, 1
+    for itr in range(months - 1):
+        child, parrent = parrent, parrent + (child * offsprings)
+    return child
+print(Fibonacci_Loop_Pythonic(5, 3))
 ```
