@@ -8,7 +8,7 @@ Code
 string = "GATGGAACTTGACTACGTAAATT"
 print(string.replace("T", "U"))
 ```
-## 3.Complementing Starbd of DNA 
+## 3.Complementing Starnd of DNA 
 code
 ```
 import Bio
