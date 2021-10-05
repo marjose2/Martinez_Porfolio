@@ -47,3 +47,20 @@ GC(my_seq)
 print(GC(my_seq))
 print(seq_record.id)
 ```
+
+## 6.Counting Point Mutations
+Code
+```
+def hammingDist(a,b):
+    hamD = 0
+    for i in range(0,len(s)):
+        if s[i] == t[i]:
+            continue
+        else:
+            hamD += 1
+    return hamD
+  
+a = 'GAGCCTACTAACGGGAT'
+b = 'CATCGTAATGACGGCCT'
+hammingDist(a,b)
+```
