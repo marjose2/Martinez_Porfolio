@@ -26,3 +26,23 @@ def Fibonacci_Loop_Pythonic(months, offsprings):
     return child
 print(Fibonacci_Loop_Pythonic(5, 3))
 ```
+## 5. Computing GC Content
+Code
+```
+#import libaries from Biopython, this makes the code more consise and easy to follow
+import Bio
+from Bio import SeqIO
+#download the data from the folder (the folder has to be located in the directory where your working)
+for seq_record in SeqIO.parse("Is_orchid.fasta", "fasta"):
+#print the basic outline of the data to see whats going on
+    print(seq_record.id)
+    print(repr(seq_record.seq))
+    print(len(seq_record)) 
+#Imports a way to counting the GC content using one line of code
+from Bio.SeqUtils import GC
+my_seq = seq_record.seq
+GC(my_seq)
+#print the results
+print(GC(my_seq))
+print(seq_record.id)
+```
