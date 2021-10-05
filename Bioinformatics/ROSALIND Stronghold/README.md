@@ -1,5 +1,6 @@
 
 # Problems
+Most of these problems were solved using Biophython.
 
 ## 1.Counting Nucleotides
 ## 2.Trancribing DNA into RNA
