@@ -80,3 +80,22 @@ from Bio.Seq import Seq
 messenger_rna = Seq("AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA")
 print(messenger_rna.translate())
 ```
+
+# 9. 
+```
+s = "GATATATGCATATACTT"
+t = "ATAT"
+def findMotif(s,t):
+    i = 0
+    while True:
+        i = s.find(t,i)
+        if i == -1: return
+        yield i + 1
+        i += 1
+x = findMotif(s,t)
+answer = ''
+for y in x:
+    answer = answer + str(y) + " "
+
+print(answer)
+```
