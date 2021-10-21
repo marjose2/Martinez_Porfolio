@@ -1,5 +1,14 @@
 ## Restureant Revenue Prediction
 
+Competition on Kaggle: https://www.kaggle.com/c/restaurant-revenue-prediction
+
+TFI has provided a dataset with 137 restaurants in the training set, and a test set of 100000 restaurants. The data columns include the open date, location, city type, and three categories of obfuscated data: Demographic data, Real estate data, and Commercial data. The revenue column indicates a (transformed) revenue of the restaurant in a given year and is the target of predictive analysis.
+
+### Files desciptions
+- train.csv - the training set. Use this dataset for training your model.
+- test.csv - the test set. To deter manual "guess" predictions, Kaggle has supplemented the test set with additional "ignored" data. These are not counted in the scoring.
+- sampleSubmission.csv - a sample submission file in the correct format
+
 ### The Data
 After taking a look at the data, there are 137 samples in the training set and 100,000 samples in the test set. This is very intriguing since the distribution of data is usually the other way around. The goal here would be to model revenue based on 137 samples in the training set and see how well the model performs on the 100,000 samples in the test set. The data fields for each sample consist of the restaurant ID which is unique for each restaurant in the sample, the opening date of the restaurant, the city, city group, restaurant type, several non-arbitrary P-variables, and revenue which is the target variable. Using a complex model for this small training dataset with noise will cause the model to overfit to the dataset. To prevent that from happening, regularization techniques for linear regression will definitely need to be used.
 
