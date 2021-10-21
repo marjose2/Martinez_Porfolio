@@ -16,7 +16,7 @@ This project is a part of the Chest X-Ray Images (Pneumonia) held on Kaggle.
 ### The Challenge
 Build an algorithm to automatically identify whether a patient is suffering from pneumonia or not by looking at chest X-ray images. The algorithm had to be extremely accurate because lives of people is at stake.
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/1.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Pneumonia%20Detection/images/1.PNG" />
 </p>
 
 ### The Data
@@ -61,7 +61,7 @@ for i, _set in enumerate(['train', 'val', 'test']):
     ax[i+3].set_title('Set: {}, Condition: Pneumonia'.format(_set))
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/1.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Pneumonia%20Detection/images/2.PNG" />
 </p>
 
 Then I split the data -set into three sets -treain, validation and sets.
@@ -139,7 +139,7 @@ Before training the model is useful to define one or more callbacks. Pretty hand
 - EarlyStopping: sometimes, during training we can notice that the generalization gap (i.e. the difference between training and validation error) starts to increase, instead of decreasing. This is a symptom of overfitting that can be solved in many ways (reducing model capacity, increasing training data, data augumentation, regularization, dropout, etc). Often a practical and efficient solution is to stop training when the generalization gap is getting worse.
 
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/1.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Pneumonia%20Detection/images/3.PNG" />
 </p>
 
 ```
@@ -253,7 +253,7 @@ for i, met in enumerate(['acc', 'loss']):
 ```
 
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/1.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Pneumonia%20Detection/images/4.PNG" />
 </p>
 
 So far so good. The model is converging which can be observed from the decrease in loss and validation loss with epochs. Also it is able to reach 90% validation accuracy in just 10 epochs.
