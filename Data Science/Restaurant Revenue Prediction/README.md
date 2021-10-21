@@ -3,16 +3,20 @@ The Data
 After taking a look at the data, there are 137 samples in the training set and 100,000 samples in the test set. This is very intriguing since the distribution of data is usually the other way around. The goal here would be to model revenue based on 137 samples in the training set and see how well the model performs on the 100,000 samples in the test set. The data fields for each sample consist of the restaurant ID which is unique for each restaurant in the sample, the opening date of the restaurant, the city, city group, restaurant type, several non-arbitrary P-variables, and revenue which is the target variable. Using a complex model for this small training dataset with noise will cause the model to overfit to the dataset. To prevent that from happening, regularization techniques for linear regression will definitely need to be used.
 
 Null values
-image 1
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/1.PNG" />
+</p>
 After a brief look at the training data, it appears that there are no null values which is a good thing. However, that may not be the case for the P-variables as we will see later in the data exploration.
 
 Data Pre-Processinf and Exploring Fetures 
 Type
-image 2
-image 3
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
+</p>
 The two figures above show the count of types of restaurants in the training set and test set. Looking carefully, there doesn’t seem to be a single occurrence of the ‘MB’ type in the training set. Type ‘MB’ stands for mobile restaurants and type ‘DT’ stands for drive-thru restaurants. Since mobile restaurants are more related to drive-thru than inline and food courts, the ‘MB’ samples in the test set were replaced with the ‘DT’ type.
-image 3
-image 4
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
+</p>
 There doesn’t seem to be any changes required for the city group feature. The training set has slightly more ‘Big Cities’ samples than ‘Other’ samples but that shouldn’t be a problem when we create our model. It should also be intuitive that restaurant revenue in the city than other areas.
 City
 ```
@@ -38,7 +42,9 @@ The opening date is the date the restaurant first opened. It won’t be of much 
 
 P-Varables
 The data has 37 p-variables which are all obfuscated data. These features contain demographic data, real estate data, and commercial data based on the data field description on the Kaggle competition page.
-image 5
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
+</p>
 
 Initially, I had thought that the p-variables were numerical features but after reading some of the discussions in the competition, it turns out that some of these features were actually categorical data encoded using integers. What’s even more interesting is that a majority of the values for some of these features are zero. Once again, after digging through the discussions, people concluded that these zero values were actually null values as shown in the plots above. Multivariate imputation by chained equations (also known as MICE) was used to replace the missing values in some of these features. The way it works is that is uses the entire set of available data to estimate the missing values.
 
@@ -67,9 +73,13 @@ test_df = pd.get_dummies(test_df, columns=columnsToEncode, drop_first=False)
 ```
 
 Target Variable Distribution
-image 6
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
+</p>
 Based on the distribution, it looks like revenue is right skewed. There also appears to be outliers which will cause issues in model training. Since we will be experimenting with linear models, the target variable will be transformed to make it normally distributed for improved model interpretation. The target variable was log transformed so the final predictions will need to be exponentiated to rescale the results back to normal.
-image 7
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
+</p>
 
 Model Experimentation
 The models that I decided on experimenting with were several different linear models, KNN, random forest and gradient boosted models. The goal here is to find the best hyper-tuned models to ensemble for the final model. Before we train any model, we will split the training set into a training and validation set.
@@ -131,7 +141,9 @@ Test RMSE: 0.5413
 ridge_feature_coef = pd.Series(index = X_train.columns, data = np.abs(ridge_model.coef_))
 ridge_feature_coef.sort_values().plot(kind = 'bar', figsize = (13,5));
 ```
-image 8
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
+</p>
 Lasso Linear Model
 Now we repeat the same procedure for a lasso model. The lasso model works differently from the ridge model because it shrinks the coefficients of less important features. This can be visualized later in the feature importance plot.
 
@@ -224,7 +236,9 @@ n_features = (el_feature_coef>0).sum()
 print(f'{n_features} features with reduction of {(1-n_features/len(el_feature_coef))*100:2.2f}%')
 el_feature_coef.sort_values().plot(kind = 'bar', figsize = (13,5));
 ```
-image 9
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
+</p>
 
 In terms of feature importance, the elastic model reduced features by 72%. Even with this reduction, the model does not seem to give an improved score against the ridge or lasso model. This is probably due to the small dataset and the linear models tendency to overfit.
 
@@ -329,7 +343,9 @@ n_features = (rf_feature_importance>0).sum()
 print(f'{n_features} features with reduction of {(1-n_features/len(rf_feature_importance))*100:2.2f}%')
 rf_feature_importance.sort_values().plot(kind = 'bar', figsize = (13,5));
 ```
-image 11
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
+</p>
 
 LightGBM
 LightGBM provides boosting capabilities for decision trees. It is a good alternative to XGBoost which we will test as well after.
@@ -392,7 +408,9 @@ n_features = (lgb_feature_importance>0).sum()
 print(f'{n_features} features with reduction of {(1-n_features/len(lgb_feature_importance))*100:2.2f}%')
 lgb_feature_importance.sort_values().plot(kind = 'bar', figsize = (13,5));
 ```
-image 12
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
+</p>
 
 XGBoost
 XGBoost is yet another boosting algorithm for decision trees. Let’s see how it compares to LightGBM after tuning hyperparameters.
@@ -474,7 +492,9 @@ data = pd.DataFrame(data=values, index=keys, columns=['score']).sort_values(by =
 data.plot(kind='bar', figsize = (13,5))
 plt.show()
 ```
- image 13
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
+</p>
  
 Ensembling
 Based on the experimentation of the models above, it’s clear that the linear models and KNN are not the best models for this dataset. Therefore, they won’t be used as part of the ensemble. The best models to ensemble would be random forests and XGBoost models as we have seen from the training and test errors above. I decided to use a random forest ensemble since boosting models in this scenario have a tendency to overfit as shown by the LightGBM model. For the ensemble, I decided to use a stacked ensemble. The benefits of this is to create a single model that has the well-performing capabilities of several base models. The base models are different tuned random forest models and the meta model will be a simple model such as a linear regressor.
@@ -520,7 +540,9 @@ StackingRegressor(cv=10,
 I fitted the stacked model on the entire dataset and tested it against the Kaggle private leaderboard. The model did surprisingly well placing 4th on the private leaderboard with a RMSE score of 1741680.77896. For reference, the 1st place solution on the private leaderboard was an RMSE of 1727811.48553.
 
 Scores
-image 14
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
+</p>
 
 Challenges & Lessons Learned
 Initially, I had not planned for a lot of things for this project. Before I read some of the discussions in the Kaggle competition, I had assumed the p-variables were actually numeric values. With this in mind, I log transformed these variables which actually ended up making the linear models better in predicting the target variable. This makes sense since every feature is normalized making it easier for a linear model to predict. After finding out that the p-variables were categorical with many missing values, imputation was a much better approach. This brings up the lesson that it’s very important to understand the data you’re working with especially if it’s a small dataset. I had also played around with many models, manually tweaking hyperparameters until I discovered grid search which did wonders on saving time and effort in finding the best model. These were just some of the few things I learned while working on this dataset. A few things to perhaps try in the future would be to fit models on relevant features and including a more diverse ensemble of
