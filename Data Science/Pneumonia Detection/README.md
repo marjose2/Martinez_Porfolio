@@ -15,7 +15,9 @@ This project is a part of the Chest X-Ray Images (Pneumonia) held on Kaggle.
 
 ### The Challenge
 Build an algorithm to automatically identify whether a patient is suffering from pneumonia or not by looking at chest X-ray images. The algorithm had to be extremely accurate because lives of people is at stake.
-image 1
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/1.PNG" />
+</p>
 
 ### The Data
 The dataset can be downloaded from the kaggle website which can be found here.
@@ -58,7 +60,9 @@ for i, _set in enumerate(['train', 'val', 'test']):
     ax[i+3].imshow(plt.imread(set_path+'/PNEUMONIA/'+os.listdir(set_path+'/PNEUMONIA')[0]), cmap='gray')
     ax[i+3].set_title('Set: {}, Condition: Pneumonia'.format(_set))
 ```
-image 2
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/1.PNG" />
+</p>
 
 Then I split the data -set into three sets -treain, validation and sets.
 ```
@@ -134,7 +138,10 @@ Before training the model is useful to define one or more callbacks. Pretty hand
 - ModelCheckpoint: when training requires a lot of time to achieve a good result, often many iterations are required. In this case, it is better to save a copy of the best performing model only when an epoch that improves the metrics ends.
 - EarlyStopping: sometimes, during training we can notice that the generalization gap (i.e. the difference between training and validation error) starts to increase, instead of decreasing. This is a symptom of overfitting that can be solved in many ways (reducing model capacity, increasing training data, data augumentation, regularization, dropout, etc). Often a practical and efficient solution is to stop training when the generalization gap is getting worse.
 
-image 4
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/1.PNG" />
+</p>
+
 ```
 inputs = Input(shape=(img_dims, img_dims, 3))
 
@@ -245,7 +252,9 @@ for i, met in enumerate(['acc', 'loss']):
     ax[i].legend(['train', 'val'])
 ```
 
-image 5
+<p align="center">
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/1.PNG" />
+</p>
 
 So far so good. The model is converging which can be observed from the decrease in loss and validation loss with epochs. Also it is able to reach 90% validation accuracy in just 10 epochs.
 Let’s plot the confusion matrix and get some of the other results also like precision, recall, F1 score and accuracy.
