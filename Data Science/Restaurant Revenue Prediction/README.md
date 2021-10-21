@@ -385,4 +385,154 @@ Test RMSE: 0.4952
 
 Based on the training score, it seems that the model has overfitted to the training set since there is no improvement in the test score. It’s probably not optimal to include this model at all in our ensemble later.
 
+```
+# LightGBM Feature Importance
+lgb_feature_importance = pd.Series(index = X_train.columns, data = np.abs(lgb_model.feature_importances_))
+n_features = (lgb_feature_importance>0).sum()
+print(f'{n_features} features with reduction of {(1-n_features/len(lgb_feature_importance))*100:2.2f}%')
+lgb_feature_importance.sort_values().plot(kind = 'bar', figsize = (13,5));
+```
+image 12
+
+XGBoost
+XGBoost is yet another boosting algorithm for decision trees. Let’s see how it compares to LightGBM after tuning hyperparameters.
+```
+params_xgb = {
+    'learning_rate': [.1, .5, .7, .9, .95, .99, 1],
+    'colsample_bytree': [.3, .4, .5, .6],
+    'max_depth': [4],
+    'alpha': [3],
+    'subsample': [.5],
+    'n_estimators': [30, 70, 100, 200]
+}
+
+xgb_model = XGBRegressor()
+xgb_regressor = GridSearchCV(xgb_model, params_xgb, scoring='neg_root_mean_squared_error', cv = 10, n_jobs = -1)
+xgb_regressor.fit(X_train, y_train)
+print(f'Optimal lr: {xgb_regressor.best_params_["learning_rate"]}')
+print(f'Optimal colsample_bytree: {xgb_regressor.best_params_["colsample_bytree"]}')
+print(f'Optimal n_estimators: {xgb_regressor.best_params_["n_estimators"]}')
+print(f'Best score: {xgb_regressor.best_score_}')
+```
+result:
+Optimal lr: 0.95
+Optimal colsample_bytree: 0.5
+Optimal n_estimators: 100
+Best score: -0.3992164151795667
+
+```
+xgb_model = XGBRegressor(learning_rate=xgb_regressor.best_params_["learning_rate"], 
+                         colsample_bytree=xgb_regressor.best_params_["colsample_bytree"], 
+                         max_depth=4, alpha=3, subsample=.5, 
+                         n_estimators=xgb_regressor.best_params_["n_estimators"], n_jobs=-1)
+xgb_model.fit(X_train, y_train)
+y_train_pred = xgb_model.predict(X_train)
+y_pred = xgb_model.predict(X_test)
+print('Train r2 score: ', r2_score(y_train_pred, y_train))
+print('Test r2 score: ', r2_score(y_test, y_pred))
+train_rmse = np.sqrt(mean_squared_error(y_train_pred, y_train))
+test_rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+print(f'Train RMSE: {train_rmse:.4f}')
+print(f'Test RMSE: {test_rmse:.4f}')
+```
+result:
+Train r2 score:  0.5795086544898738
+Test r2 score:  0.32589181766269526
+Train RMSE: 0.2309
+Test RMSE: 0.4538
+
+The model doesn’t seem to be overfitting as much as LightGBM. The training and test scores seem to be lower than the random forest model too. This explains why the model is heavily used in just about any problem setting.
+
+```
+# XGB with early stopping
+xgb_model.fit(X_train, y_train, early_stopping_rounds=4,
+             eval_set=[(X_test, y_test)], verbose=False)
+y_train_pred = xgb_model.predict(X_train)
+y_pred = xgb_model.predict(X_test)
+print('Train r2 score: ', r2_score(y_train_pred, y_train))
+print('Test r2 score: ', r2_score(y_test, y_pred))
+train_rmse = np.sqrt(mean_squared_error(y_train_pred, y_train))
+test_rmse = np.sqrt(mean_squared_error(y_test, y_pred))
+print(f'Train RMSE: {train_rmse:.4f}')
+print(f'Test RMSE: {test_rmse:.4f}')
+```
+result:
+Train r2 score:  -0.15853608490123916
+Test r2 score:  0.3050460256750407
+Train RMSE: 0.3131
+Test RMSE: 0.4607
+
+It is very easy to overfit in boosted models so we will add early stopping parameters to reduce overfitting. This gives us a better model that is still able to generalize the test set quite well.
+
+```
+# XGB Feature Importance, relevant features can be selected based on its score
+feature_important = xgb_model.get_booster().get_fscore()
+keys = list(feature_important.keys())
+values = list(feature_important.values())
+
+data = pd.DataFrame(data=values, index=keys, columns=['score']).sort_values(by = 'score', ascending=True)
+data.plot(kind='bar', figsize = (13,5))
+plt.show()
+```
+ image 13
+ 
+Ensembling
+Based on the experimentation of the models above, it’s clear that the linear models and KNN are not the best models for this dataset. Therefore, they won’t be used as part of the ensemble. The best models to ensemble would be random forests and XGBoost models as we have seen from the training and test errors above. I decided to use a random forest ensemble since boosting models in this scenario have a tendency to overfit as shown by the LightGBM model. For the ensemble, I decided to use a stacked ensemble. The benefits of this is to create a single model that has the well-performing capabilities of several base models. The base models are different tuned random forest models and the meta model will be a simple model such as a linear regressor.
+ 
+```
+# define the base models
+base_model = list()
+base_model.append(('rf1', rf_model))
+base_model.append(('rf2', rf_model_en))
+base_model.append(('rf3', RandomForestRegressor(max_depth=8, max_features=0.1, min_samples_leaf=3, 
+                                                min_samples_split=2, n_estimators=250, n_jobs=-1, oob_score=False)))
+# define meta learner model
+learner = LinearRegression()
+# define the stacking ensemble
+stack2 = StackingRegressor(estimators=base_model, final_estimator=learner, cv=10)
+# fit the model on all available data
+stack2.fit(X, y)
+StackingRegressor(cv=10,
+                  estimators=[('rf1',
+                               RandomForestRegressor(max_depth=10,
+                                                     max_features=0.3,
+                                                     min_samples_leaf=4,
+                                                     min_samples_split=8,
+                                                     n_estimators=50, n_jobs=-1,
+                                                     oob_score=True)),
+                              ('rf2',
+                               RandomForestRegressor(max_depth=200,
+                                                     max_features=0.4,
+                                                     min_samples_leaf=3,
+                                                     min_samples_split=6,
+                                                     n_estimators=30, n_jobs=-1,
+                                                     oob_score=True)),
+                              ('rf3',
+                               RandomForestRegressor(max_depth=8,
+                                                     max_features=0.1,
+                                                     min_samples_leaf=3,
+                                                     n_estimators=250,
+                                                     n_jobs=-1))],
+                  final_estimator=LinearRegression())
+                 
+```
+
+I fitted the stacked model on the entire dataset and tested it against the Kaggle private leaderboard. The model did surprisingly well placing 4th on the private leaderboard with a RMSE score of 1741680.77896. For reference, the 1st place solution on the private leaderboard was an RMSE of 1727811.48553.
+
+Scores
+image 14
+
+Challenges & Lessons Learned
+Initially, I had not planned for a lot of things for this project. Before I read some of the discussions in the Kaggle competition, I had assumed the p-variables were actually numeric values. With this in mind, I log transformed these variables which actually ended up making the linear models better in predicting the target variable. This makes sense since every feature is normalized making it easier for a linear model to predict. After finding out that the p-variables were categorical with many missing values, imputation was a much better approach. This brings up the lesson that it’s very important to understand the data you’re working with especially if it’s a small dataset. I had also played around with many models, manually tweaking hyperparameters until I discovered grid search which did wonders on saving time and effort in finding the best model. These were just some of the few things I learned while working on this dataset. A few things to perhaps try in the future would be to fit models on relevant features and including a more diverse ensemble of
+
+
+
+
+
+
+
+
+
+
+
 
