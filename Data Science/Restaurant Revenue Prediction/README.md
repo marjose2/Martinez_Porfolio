@@ -4,18 +4,18 @@ After taking a look at the data, there are 137 samples in the training set and 1
 
 Null values
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/tree/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/1.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/1.PNG" />
 </p>
 After a brief look at the training data, it appears that there are no null values which is a good thing. However, that may not be the case for the P-variables as we will see later in the data exploration.
 
 Data Pre-Processinf and Exploring Fetures 
 Type
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/2.PNG" />
 </p>
 The two figures above show the count of types of restaurants in the training set and test set. Looking carefully, there doesn’t seem to be a single occurrence of the ‘MB’ type in the training set. Type ‘MB’ stands for mobile restaurants and type ‘DT’ stands for drive-thru restaurants. Since mobile restaurants are more related to drive-thru than inline and food courts, the ‘MB’ samples in the test set were replaced with the ‘DT’ type.
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/3.PNG" />
 </p>
 There doesn’t seem to be any changes required for the city group feature. The training set has slightly more ‘Big Cities’ samples than ‘Other’ samples but that shouldn’t be a problem when we create our model. It should also be intuitive that restaurant revenue in the city than other areas.
 City
@@ -43,7 +43,7 @@ The opening date is the date the restaurant first opened. It won’t be of much 
 P-Varables
 The data has 37 p-variables which are all obfuscated data. These features contain demographic data, real estate data, and commercial data based on the data field description on the Kaggle competition page.
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/4.PNG" />
 </p>
 
 Initially, I had thought that the p-variables were numerical features but after reading some of the discussions in the competition, it turns out that some of these features were actually categorical data encoded using integers. What’s even more interesting is that a majority of the values for some of these features are zero. Once again, after digging through the discussions, people concluded that these zero values were actually null values as shown in the plots above. Multivariate imputation by chained equations (also known as MICE) was used to replace the missing values in some of these features. The way it works is that is uses the entire set of available data to estimate the missing values.
@@ -74,11 +74,11 @@ test_df = pd.get_dummies(test_df, columns=columnsToEncode, drop_first=False)
 
 Target Variable Distribution
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/5.PNG" />
 </p>
 Based on the distribution, it looks like revenue is right skewed. There also appears to be outliers which will cause issues in model training. Since we will be experimenting with linear models, the target variable will be transformed to make it normally distributed for improved model interpretation. The target variable was log transformed so the final predictions will need to be exponentiated to rescale the results back to normal.
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/6.PNG" />
 </p>
 
 Model Experimentation
@@ -142,7 +142,7 @@ ridge_feature_coef = pd.Series(index = X_train.columns, data = np.abs(ridge_mode
 ridge_feature_coef.sort_values().plot(kind = 'bar', figsize = (13,5));
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/7.PNG" />
 </p>
 Lasso Linear Model
 Now we repeat the same procedure for a lasso model. The lasso model works differently from the ridge model because it shrinks the coefficients of less important features. This can be visualized later in the feature importance plot.
@@ -237,7 +237,7 @@ print(f'{n_features} features with reduction of {(1-n_features/len(el_feature_co
 el_feature_coef.sort_values().plot(kind = 'bar', figsize = (13,5));
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/8.PNG" />
 </p>
 
 In terms of feature importance, the elastic model reduced features by 72%. Even with this reduction, the model does not seem to give an improved score against the ridge or lasso model. This is probably due to the small dataset and the linear models tendency to overfit.
@@ -344,7 +344,7 @@ print(f'{n_features} features with reduction of {(1-n_features/len(rf_feature_im
 rf_feature_importance.sort_values().plot(kind = 'bar', figsize = (13,5));
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/9.PNG" />
 </p>
 
 LightGBM
@@ -409,7 +409,7 @@ print(f'{n_features} features with reduction of {(1-n_features/len(lgb_feature_i
 lgb_feature_importance.sort_values().plot(kind = 'bar', figsize = (13,5));
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/10.PNG" />
 </p>
 
 XGBoost
@@ -493,7 +493,7 @@ data.plot(kind='bar', figsize = (13,5))
 plt.show()
 ```
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/11.PNG" />
 </p>
  
 Ensembling
@@ -541,7 +541,7 @@ I fitted the stacked model on the entire dataset and tested it against the Kaggl
 
 Scores
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/table2.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/12.PNG" />
 </p>
 
 Challenges & Lessons Learned
