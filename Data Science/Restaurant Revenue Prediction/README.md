@@ -4,7 +4,7 @@ After taking a look at the data, there are 137 samples in the training set and 1
 
 Null values
 <p align="center">
-  <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Fake%20News%20Detector/images/1.PNG" />
+  <img src="https://github.com/marjose2/Martinez_Porfolio/tree/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/1.PNG" />
 </p>
 After a brief look at the training data, it appears that there are no null values which is a good thing. However, that may not be the case for the P-variables as we will see later in the data exploration.
 
