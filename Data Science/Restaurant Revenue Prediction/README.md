@@ -2,7 +2,7 @@
 The Data
 After taking a look at the data, there are 137 samples in the training set and 100,000 samples in the test set. This is very intriguing since the distribution of data is usually the other way around. The goal here would be to model revenue based on 137 samples in the training set and see how well the model performs on the 100,000 samples in the test set. The data fields for each sample consist of the restaurant ID which is unique for each restaurant in the sample, the opening date of the restaurant, the city, city group, restaurant type, several non-arbitrary P-variables, and revenue which is the target variable. Using a complex model for this small training dataset with noise will cause the model to overfit to the dataset. To prevent that from happening, regularization techniques for linear regression will definitely need to be used.
 
-Null values
+### Null values
 <p align="center">
   <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/1.PNG" />
 </p>
@@ -25,7 +25,7 @@ Out[10]: (34, 57)
 ```
 For the ‘City’ feature, it appears that there are cities in the test set that aren’t in the training set. It is also worth noting that some of the non-arbitrary P-variables already contain geolocation information so the entire ‘City’ feature was dropped for both datasets.
 
-Open Date
+### Open Date
 ```
 import datetime
 df.drop('Id',axis=1,inplace=True)
@@ -72,7 +72,7 @@ df = pd.get_dummies(df, columns=columnsToEncode, drop_first=False)
 test_df = pd.get_dummies(test_df, columns=columnsToEncode, drop_first=False)
 ```
 
-Target Variable Distribution
+### Target Variable Distribution
 <p align="center">
   <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/5.PNG" />
 </p>
@@ -81,14 +81,14 @@ Based on the distribution, it looks like revenue is right skewed. There also app
   <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/6.PNG" />
 </p>
 
-Model Experimentation
+### Model Experimentation
 The models that I decided on experimenting with were several different linear models, KNN, random forest and gradient boosted models. The goal here is to find the best hyper-tuned models to ensemble for the final model. Before we train any model, we will split the training set into a training and validation set.
 ```
 df['revenue'] = np.log1p(df['revenue'])
 X, y = df.drop('revenue', axis=1), df['revenue']
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.20, random_state=118)
 ```
-Ridge Linear Model
+### Ridge Linear Model
 Ridge regression is a regularized linear model. As stated earlier, regularization techniques need to be used to prevent overfitting especially since our training set is very small. Before we train a ridge model on the training, we need to find the optimal parameters for the model. To do this, grid search along with k-fold cross validation was used to find the optimal parameters that led to the best score.
 ```
 params_ridge = {
@@ -144,7 +144,8 @@ ridge_feature_coef.sort_values().plot(kind = 'bar', figsize = (13,5));
 <p align="center">
   <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/7.PNG" />
 </p>
-Lasso Linear Model
+
+### Lasso Linear Model
 Now we repeat the same procedure for a lasso model. The lasso model works differently from the ridge model because it shrinks the coefficients of less important features. This can be visualized later in the feature importance plot.
 
 ```
@@ -242,7 +243,7 @@ el_feature_coef.sort_values().plot(kind = 'bar', figsize = (13,5));
 
 In terms of feature importance, the elastic model reduced features by 72%. Even with this reduction, the model does not seem to give an improved score against the ridge or lasso model. This is probably due to the small dataset and the linear models tendency to overfit.
 
-KNN
+### KNN
 For KNN, we will use the KNeighborsRegressor from sklearn. We apply the same process to find the optimal neighbor parameter.
 ```
 from sklearn.neighbors import KNeighborsRegressor
@@ -347,7 +348,7 @@ rf_feature_importance.sort_values().plot(kind = 'bar', figsize = (13,5));
   <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/9.PNG" />
 </p>
 
-LightGBM
+### LightGBM
 LightGBM provides boosting capabilities for decision trees. It is a good alternative to XGBoost which we will test as well after.
 
 ```
@@ -412,7 +413,7 @@ lgb_feature_importance.sort_values().plot(kind = 'bar', figsize = (13,5));
   <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/10.PNG" />
 </p>
 
-XGBoost
+### XGBoost
 XGBoost is yet another boosting algorithm for decision trees. Let’s see how it compares to LightGBM after tuning hyperparameters.
 ```
 params_xgb = {
@@ -496,7 +497,7 @@ plt.show()
   <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/11.PNG" />
 </p>
  
-Ensembling
+#### Ensembling
 Based on the experimentation of the models above, it’s clear that the linear models and KNN are not the best models for this dataset. Therefore, they won’t be used as part of the ensemble. The best models to ensemble would be random forests and XGBoost models as we have seen from the training and test errors above. I decided to use a random forest ensemble since boosting models in this scenario have a tendency to overfit as shown by the LightGBM model. For the ensemble, I decided to use a stacked ensemble. The benefits of this is to create a single model that has the well-performing capabilities of several base models. The base models are different tuned random forest models and the meta model will be a simple model such as a linear regressor.
  
 ```
@@ -539,7 +540,7 @@ StackingRegressor(cv=10,
 
 I fitted the stacked model on the entire dataset and tested it against the Kaggle private leaderboard. The model did surprisingly well placing 4th on the private leaderboard with a RMSE score of 1741680.77896. For reference, the 1st place solution on the private leaderboard was an RMSE of 1727811.48553.
 
-Scores
+### Scores
 <p align="center">
   <img src="https://github.com/marjose2/Martinez_Porfolio/blob/main/Data%20Science/Restaurant%20Revenue%20Prediction/images/12.PNG" />
 </p>
