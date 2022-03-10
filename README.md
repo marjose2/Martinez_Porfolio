@@ -3,7 +3,7 @@ Index
 This repository holds all of my personal projects that I've done over the years. Cureently they're binned in three different categories
 1. [Data Science](https://github.com/marjose2/Martinez_Porfolio/tree/main/Data%20Science)
 2. [Data Analysis](https://github.com/marjose2/Martinez_Porfolio/tree/main/Data%20Analysis)
-3. [Reseacrh Projects](https://github.com/marjose2/Martinez_Porfolio/tree/main/Research%20Project)
+3. [Computational Biology Reseacrh Projects](https://github.com/marjose2/Martinez_Porfolio/tree/main/Research%20Project)
 
 Each project has their own variety of Porjects and should be accompanied by some from of documentation
 
