@@ -1,12 +1,7 @@
 # Bioinformatics, Data Science Research Project
 ## Visit My Other Projects!
-<details><summary>Data Analysis Projects</summary>
 
-  
-<details><summary>Data Science Projects </summary>
-
-</details>
-</details>
+[Data Science](https://github.com/marjose2/Martinez_Porfolio/tree/main/Data%20Science)
 
 ## What This Research Project Was All About
 <details><summary>Abstract</summary>
